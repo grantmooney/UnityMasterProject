@@ -24,9 +24,7 @@ public class LoadingPanel : MonoBehaviour {
 	}
 
 	private void HandleOnLoadComplete () {
-		if (m_onComplete != null) {
-			m_onComplete();
-		}
+		if (m_onComplete != null) { m_onComplete(); }
 		PanelManager.Instance.RemovePanel (this.gameObject);
 	}
 

@@ -30,38 +30,23 @@ public class LoadManager : MonoBehaviour {
 
 	public void LoadAdditiveAsync(string sceneName) {
         if (m_isLoading) { return; }
-
         m_asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
 		m_isLoading = true;
-
-		if (OnLoadStart != null) {
-			OnLoadStart();
-		}
+		if (OnLoadStart != null) { OnLoadStart(); }
 	}
 
 	public void LoadAsync(string sceneName) {
         if (m_isLoading) { return; }
-
         m_asyncOperation = SceneManager.LoadSceneAsync(sceneName);
-
 		m_isLoading = true;
-
-		if (OnLoadStart != null) {
-			OnLoadStart();
-		}
+		if (OnLoadStart != null) { OnLoadStart(); }
 	}
 
 	private void Update() {
 		if (m_isLoading && m_asyncOperation != null) {
-			if(OnLoadProgress != null) {
-				OnLoadProgress(m_asyncOperation.progress);
-			}
-
+			if(OnLoadProgress != null) { OnLoadProgress(m_asyncOperation.progress); }
 			if(m_asyncOperation.isDone) {
-				if(OnLoadComplete != null) {
-					OnLoadComplete();
-				}
+				if(OnLoadComplete != null) { OnLoadComplete(); }
 				m_asyncOperation = null;
 				m_isLoading = false;
 			}

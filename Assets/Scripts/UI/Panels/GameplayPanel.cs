@@ -3,11 +3,10 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GameplayPanel : MonoBehaviour {
-
 	[SerializeField] private Button m_exitButton;
 
 	private void Awake() {
-		m_exitButton.onClick.AddListener (() => { OnExitButtonClicked ();});
+		m_exitButton.onClick.AddListener (() => { OnExitButtonClicked (); });
 	}
 
 	private void OnExitButtonClicked() {
