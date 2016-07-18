@@ -17,14 +17,12 @@ public class GameManager {
 	private const string SAVE_DATA_KEY = "GameSaveData";
 
 	public GameManager() {
-		// Debug.Log ("Game Manager loaded");
+		Debug.Log ("Game Manager Created!");
 	}
 
 	public void Initialize() {
 		Config.Load();
 		LoadData();
-		Debug.Log (Config.GetBool("IS_TRIAL"));
-        Debug.Log(Config.Language.GetString("IS_TRIAL"));
 	}
 
 	private void LoadData() {
