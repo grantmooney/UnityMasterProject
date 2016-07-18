@@ -3,6 +3,7 @@ using System.Collections;
 using System.Xml;
 using System.Collections.Generic;
 
+// Global game configuration
 public class Config {
     public static class Language {
         private static string s_language = "en-us";
@@ -25,11 +26,10 @@ public class Config {
             }
         }
 
+        public static string Get() { return s_language; }
+
         public static string GetString(string id) {
-            if (s_strings.ContainsKey(id)) {
-                return s_strings[id].ToString();
-            }
-            return "Error";
+            return (s_strings.ContainsKey(id))?s_strings[id]:"Error: String not found!";
         }
     }
 
@@ -38,15 +38,15 @@ public class Config {
 	public static void Load() {
         s_dictionary = new Dictionary<string, string>();
         TextAsset textAsset = Resources.Load("xml/config") as TextAsset;
+        if (textAsset == null) {
+            Debug.LogError("Language not found!");
+            return;
+        }
         XmlDocument document = new XmlDocument();
         document.LoadXml(textAsset.text);
 
-		foreach(XmlNode node in document.DocumentElement.ChildNodes) {
-            s_dictionary.Add(node.Name, node.InnerText);
-		}
-        if (s_dictionary.ContainsKey("LANGUAGE")) {
-            Language.Set(s_dictionary["LANGUAGE"].ToString());
-        }
+		foreach(XmlNode node in document.DocumentElement.ChildNodes) { s_dictionary.Add(node.Name, node.InnerText); }
+        if (s_dictionary.ContainsKey("LANGUAGE")) { Language.Set(s_dictionary["LANGUAGE"].ToString()); }
 	}
 
 	public static int GetInt(string id) {

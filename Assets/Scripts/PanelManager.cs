@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PanelManager : MonoBehaviour {
-
 	private static PanelManager s_instance;
 	public static PanelManager Instance {
 		get {
@@ -16,7 +15,6 @@ public class PanelManager : MonoBehaviour {
 
 	[SerializeField] private List<GameObject>m_managedPanels;
 	[SerializeField] private GameObject m_initialPanel;
-
 	private void Awake() {
 		if (s_instance == null) {
 			s_instance = this;
@@ -75,9 +73,7 @@ public class PanelManager : MonoBehaviour {
 	public GameObject GetPanel(string panelName) {
 		int numPanels = m_managedPanels.Count;
 		for (int i=0; i<numPanels; i++) {
-			if(m_managedPanels[i].name == panelName) {
-				return m_managedPanels[i];
-			}
+			if(m_managedPanels[i].name == panelName) { return m_managedPanels[i]; }
 		}
 		return null;
 	}
