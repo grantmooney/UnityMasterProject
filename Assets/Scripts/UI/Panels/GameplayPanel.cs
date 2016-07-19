@@ -2,16 +2,17 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameplayPanel : MonoBehaviour {
+public class GameplayPanel : BasePanel {
 	[SerializeField] private Button m_exitButton;
 
-	private void Awake() {
-		m_exitButton.onClick.AddListener (() => { OnExitButtonClicked (); });
+    public override void Awake() {
+        base.Awake();
+		m_exitButton.onClick.AddListener(() => { OnExitButtonClicked (); });
 	}
 
 	private void OnExitButtonClicked() {
-		PanelManager.Instance.SwitchPanel (this.gameObject, "TitlePanel");
-		LoadManager.Instance.LoadAsync ("EmptyScene");
+		PanelManager.Instance.SwitchPanel(this.gameObject, "TitlePanel");
+		LoadManager.Instance.LoadAsync("EmptyScene");
 		System.GC.Collect ();
 	}
 }

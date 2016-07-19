@@ -2,10 +2,11 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TitlePanel : MonoBehaviour {
+public class TitlePanel : BasePanel {
 	[SerializeField] private Button m_playButton;
 
-	private void Awake() {
+	public override void Awake() {
+        base.Awake();
 		m_playButton.onClick.AddListener (() => { OnPlayButtonClicked(); });
 	}
 

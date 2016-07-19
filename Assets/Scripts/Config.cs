@@ -29,6 +29,10 @@ public class Config {
         public static string Get() { return s_language; }
 
         public static string GetString(string id) {
+            if (s_strings == null) {
+                Debug.LogError("String dictionary not found!");
+                return "";
+            }
             return (s_strings.ContainsKey(id))?s_strings[id]:"Error: String not found!";
         }
     }

@@ -14,7 +14,7 @@ public class GameManager {
 		}
 	}
 
-	private const string SAVE_DATA_KEY = "GameSaveData";
+	private const string SAVE_DATA_KEY = "S@v3_Da7A_K3Y";
 
 	public GameManager() {
 		Debug.Log ("Game Manager Created!");

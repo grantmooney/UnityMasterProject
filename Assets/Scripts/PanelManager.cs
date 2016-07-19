@@ -16,6 +16,9 @@ public class PanelManager : MonoBehaviour {
 	[SerializeField] private List<GameObject>m_managedPanels;
 	[SerializeField] private GameObject m_initialPanel;
 	private void Awake() {
+        // Get configuration & language library
+        GameManager.Instance.Initialize();
+
 		if (s_instance == null) {
 			s_instance = this;
 			DontDestroyOnLoad(this.gameObject);
@@ -32,7 +35,6 @@ public class PanelManager : MonoBehaviour {
 				RemovePanel(panel);
 			}
 		}
-		GameManager.Instance.Initialize ();
 	}
 
 	public void AddPanel(GameObject gameObject) {

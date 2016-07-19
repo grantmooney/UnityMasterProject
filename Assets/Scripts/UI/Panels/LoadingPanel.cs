@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 
-public class LoadingPanel : MonoBehaviour {
+public class LoadingPanel : BasePanel {
 	[SerializeField] private GameObject m_fillObject;
 
 	private Action m_onComplete;
@@ -12,14 +12,12 @@ public class LoadingPanel : MonoBehaviour {
 		LoadingPanel panel = PanelManager.Instance.GetPanel("LoadingPanel").GetComponent<LoadingPanel> ();
 		panel.m_onComplete = onComplete;
 		PanelManager.Instance.AddPanel (panel.gameObject);
-
 		LoadManager.Instance.LoadAdditiveAsync (sceneName);
 	}
 
 	private void OnEnable() {
 		LoadManager.OnLoadProgress += HandleOnLoadProgress;
 		LoadManager.OnLoadComplete += HandleOnLoadComplete;
-
 		SetProgress (0.0f);
 	}
 
